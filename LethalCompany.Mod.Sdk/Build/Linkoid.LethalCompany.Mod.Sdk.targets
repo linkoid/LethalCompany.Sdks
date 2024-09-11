@@ -1,0 +1,14 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="LethalCompany.Common.targets" Condition="'$(LethalCompanyCommonTargetsHasBeenImported)' != 'true'" />
+  
+  <Import Project="GameReferences.targets" Condition="'$(EnableGameReferences)' == 'true' and '$(GameReferencesTargetsHasBeenImported)' != 'true'" />
+
+  <!-- Start Game on Run -->
+  <PropertyGroup Condition="$(StartGameOnRun)">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(GameExePath)</StartProgram>
+    <StartWorkingDirectory>$(GameDirectory)</StartWorkingDirectory>
+  </PropertyGroup>
+    
+</Project>

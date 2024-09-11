@@ -1,0 +1,12 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <FindGameSubpathsTargetsHasBeenImported>true</FindGameSubpathsTargetsHasBeenImported>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameExePath Condition="'$(GameExePath)' == ''">$([MSBuild]::NormalizePath($(GameDirectory), $(GameExe))</GameExePath>
+    <GameManagedDirectory Condition="'$(GameManagedDirectory)' == ''">$([MSBuild]::NormalizePath($(GameDirectory), Lethal Company_Data, Managed)</GameManagedDirectory>
+  </PropertyGroup>
+  
+</Project>

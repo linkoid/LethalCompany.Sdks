@@ -1,0 +1,18 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="LethalCompany.Common.props" Condition="'$(LethalCompanyCommonPropsHasBeenImported)' != 'true'" />
+
+  <PropertyGroup>
+    <StartGameOnRun Condition="'$(StartGameOnRun)' == ''">true</StartGameOnRun>
+    <EnableGameReferences Condition="'$(EnableGameReferences)' == ''">false</EnableGameReferences>
+  </PropertyGroup>
+
+  <!-- Embed Debug Symbols for Easier Debugging -->
+  <PropertyGroup>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>embedded</DebugType>
+    <!-- Trim the project path to prevent players from potentially viewing private information in stack traces -->
+    <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)'))=$(MSBuildProjectName)/</PathMap>
+  </PropertyGroup>
+
+</Project>

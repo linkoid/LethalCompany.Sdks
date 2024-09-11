@@ -1,0 +1,23 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <GameReferencesTargetsHasBeenImported>true</GameReferencesTargetsHasBeenImported>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Enable "Add Assembly Reference" -->
+    <AssemblyReferenceTabs>TAB_ASSEMBLY_EXTENSIONS</AssemblyReferenceTabs>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="Exists($(GamePath))">
+    <!-- Add certain game folders to AssemblySearchPaths so explicit hint paths aren't necessary -->
+    <AssemblySearchPaths Condition="Exists($(GameManagedDirectory))">$(AssemblySearchPaths);$(GameManagedDirectory)</AssemblySearchPaths>
+    <AssemblySearchPaths Condition="Exists($(PluginDirectory))">$(AssemblySearchPaths);$(PluginDirectory)</AssemblySearchPaths>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" Exclude="@(Reference)" Private="false" />
+    <Reference Include="Unity.Netcode.Runtime" Exclude="@(Reference)" Private="false" />
+  </ItemGroup>
+
+</Project>
