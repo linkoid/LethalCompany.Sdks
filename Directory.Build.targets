@@ -1,3 +1,38 @@
 <Project>
+  <ItemGroup>
+    <None Include="$(MSBuildProjectDirectory)/README.md" Exclude="@(None)" Pack="true" PackagePath="/" Condition="$(IsPackable)" />
+    <Content Include="$(MSBuildProjectDirectory)/Build/**" Exclude="@(Content)" Pack="true" PackagePath="build/%(RecursiveDir)" Condition="$(IsPackable)" />
+    <Content Include="$(MSBuildProjectDirectory)/Sdk/**" Exclude="@(Content)" Pack="true" PackagePath="sdk/%(RecursiveDir)" Condition="$(IsPackable)" />
+  </ItemGroup>
+
+  <Target Name="GetPackage"
+        DependsOnTargets="$(PackDependsOn)"
+        Returns="@(_GetPackageOutput)"
+        Condition="'$(IsPackable)' == 'true'">
+    <ItemGroup>
+      <_GetPackageOutput Include="@(NuGetPackOutput->WithMetadataValue('Extension', '.nupkg'))">
+        <PackageId>$(PackageId)</PackageId>
+        <PackageVersion>$(PackageVersion)</PackageVersion>
+      </_GetPackageOutput>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_ValidatePackageForRelease"
+          Condition="'$(IsPackable)' == 'true'">
+    <Error Condition="$(Configuration) != 'Release'" Text="Cannot push package when Configuration is not 'Release'" />
+    <Error Condition="!$(PackageId.StartsWith('Linkoid.LethalCompany.'))" Text="PackageId does not start with 'Linkoid.LethalCompany.'" />
+    <Error Condition="!Exists(@(None->WithMetadataValue('Filename', 'README')))" Text="Missing the README" />
+    <Error Condition="'$(Description)' == ''" Text="Missing Description" />
+  </Target>
+
+  <Target Name="NuGetPush"
+          DependsOnTargets="_ValidatePackageForRelease;GetPackage"
+          Condition="'$(IsPackable)' == 'true'">
+    <PropertyGroup>
+      <NuGetPushSource Condition="'$(NuGetPushSource)' == ''">$(DefaultPushSource)</NuGetPushSource>
+      <NuGetPushSource Condition="'$(NuGetPushSource)' == ''">nuget.org</NuGetPushSource>
+    </PropertyGroup>
+    <Exec Command="dotnet nuget push @(_GetPackageOutput) -s $(NuGetPushSource) --skip-duplicate" />
+  </Target>
   
 </Project>
