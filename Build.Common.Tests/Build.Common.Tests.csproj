@@ -6,10 +6,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectAsPackageReference Include="../LethalCompany.Mod.Build/LethalCompany.Mod.Build.csproj" Version="1.0.0" />
+    <ProjectAsPackageReference Include="../Build.Common/Build.Common.csproj" Version="1.0.0" />
   </ItemGroup>
 
   <PropertyGroup>

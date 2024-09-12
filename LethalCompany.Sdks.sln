@@ -13,9 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LethalCompany.Mod.Build.Tests", "LethalCompany.Mod.Build.Tests\LethalCompany.Mod.Build.Tests.csproj", "{9B195FBE-21B3-4A46-8F4E-63BCAF0BD315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build.Common.Tests", "Build.Common.Tests\Build.Common.Tests.csproj", "{9B195FBE-21B3-4A46-8F4E-63BCAF0BD315}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LethalCompany.Mod.Build", "LethalCompany.Mod.Build\LethalCompany.Mod.Build.csproj", "{8BAD3831-91AF-41AD-A65B-BA82179FF11E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build.Common", "Build.Common\Build.Common.csproj", "{8BAD3831-91AF-41AD-A65B-BA82179FF11E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
