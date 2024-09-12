@@ -1,1 +1,1 @@
-# LethalCompany.Mod.Sdk
+# LethalCompany.Mod.Sdks

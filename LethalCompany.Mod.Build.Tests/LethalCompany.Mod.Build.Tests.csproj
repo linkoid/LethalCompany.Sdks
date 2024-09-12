@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  
+  <Sdk Name="Linkoid.Build.ProjectAsPackageReference" Version="1.0.0" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectAsPackageReference Include="../LethalCompany.Mod.Build/LethalCompany.Mod.Build.csproj" Version="1.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <EnableGameReferences>true</EnableGameReferences>
+  </PropertyGroup>
+
+</Project>
