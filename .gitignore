@@ -3,8 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
+# MSTest test Results
+[Tt]est[Rr]esults*/
+[Bb]uild[Ll]og.*
+
 # Repository specific files
-Test.Templates/Content/SmiteUnitTests/.runsettings
+Test.Templates/Content/**/.runsettings
 
 # User-specific files
 *.rsuser
@@ -43,10 +48,6 @@ bld/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
-
-# MSTest test Results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
 
 # NUnit
 *.VisualState.xml
