@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.56">
+  
+  <PropertyGroup>
+    <NoTargetsDoNotReferenceOutputAssemblies>false</NoTargetsDoNotReferenceOutputAssemblies>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="../Common.Build/Common.Build.csproj" IncludeAssets="all" ExcludeAssets="none" PrivateAssets="none" />
+  </ItemGroup>
+  
+</Project>

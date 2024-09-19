@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <!-- The test runner needs a full runtime, but the assembly copied to the plugins folder needs to be netstandard2.1 -->
+    <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
+    <IsPackable>false</IsPackable>
+    <StartGameOnRun>false</StartGameOnRun>
+    <GenerateRunSettings>true</GenerateRunSettings>
+    <Nullable>enable</Nullable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <CopyFilesToPluginOutputDirectoryOnRun>false</CopyFilesToPluginOutputDirectoryOnRun>
+    <IsLethalCompanyPlugin>false</IsLethalCompanyPlugin>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsNetStandard Condition="$(TargetFramework.StartsWith('netstandard'))">true</IsNetStandard>
+    <IsNetStandard Condition="'$(IsNetStandard)' == ''">false</IsNetStandard>
+  </PropertyGroup>
+
+  <!-- Configue which files are copied to the plugin output folder -->
+  <PropertyGroup>
+    <NetStandardRuntimeAssets Condition="$(IsNetStandard)">runtime</NetStandardRuntimeAssets>
+    <CopyFilesToPluginOutputDirectoryOnBuild Condition="$(IsNetStandard) and '$(Configuration)' == 'Debug'">true</CopyFilesToPluginOutputDirectoryOnBuild>
+  </PropertyGroup>
+
+  <!-- Configue Plugin References -->
+  <ItemGroup>
+    <ProjectReference Include="../SmiteUnitPlugin/SmiteUnitPlugin.0.csproj" ExcludeAssets="$(NetStandardRuntimeAssets)" />
+  </ItemGroup>
+
+  <!-- Add Package Sources -->
+  <PropertyGroup>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <!-- Test Package References -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" Condition="!$(IsNetStandard)" />
+    <PackageReference Include="coverlet.collector" Version="3.*" Condition="!$(IsNetStandard)" />
+
+    <PackageReference Include="Linkoid.LethalCompany.Test.Build" Version="1.0.0" />
+
+    <PackageReference Include="Linkoid.SmiteUnit" Version="0.3.2-alpha.0" />
+    <PackageReference Include="Linkoid.SmiteUnit.Unity" Version="0.1.*-*" />
+    <!-- Injection is included just encase the plugin project is not configured to copy it to the output -->
+    <PackageReference Include="Linkoid.SmiteUnit.Injection" Version="0.3.*-*" IncludeAssets="runtime" />
+  </ItemGroup>
+
+  <!-- Game Package References -->
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.*" ExcludeAssets="$(NetStandardRuntimeAssets)" />
+    <PackageReference Include="LethalCompany.GameLibs.Steam" Version="*-*" ExcludeAssets="$(NetStandardRuntimeAssets)" />
+  </ItemGroup>
+  
+</Project>

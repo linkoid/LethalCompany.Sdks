@@ -1,0 +1,30 @@
+﻿<Project>
+  
+  <PropertyGroup>
+    <LethalCompanyCommonPropsGotImported>true</LethalCompanyCommonPropsGotImported>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <_DirectoryLethalCompanyProps>$([MSBuild]::GetPathOfFileAbove('Directory.LethalCompany.props', $(MSBuildProjectDirectory)))</_DirectoryLethalCompanyProps>
+    <_ShouldImportDirectoryLethalCompanyProps>false</_ShouldImportDirectoryLethalCompanyProps>
+    <_ShouldImportDirectoryLethalCompanyProps Condition="Exists($(_DirectoryLethalCompanyProps)) and '$(DirectoryLethalCompanyPropsGotImported)' != 'true'">true</_ShouldImportDirectoryLethalCompanyProps>
+  </PropertyGroup>
+
+  <Import Project="$(_DirectoryLethalCompanyProps)" Condition="$(_ShouldImportDirectoryLethalCompanyProps)" />
+  <PropertyGroup Condition="$(_ShouldImportDirectoryLethalCompanyProps)" >
+    <DirectoryLethalCompanyPropsGotImported>true</DirectoryLethalCompanyPropsGotImported>
+  </PropertyGroup>
+
+  <Import Project="FindGameDirectory.props" Condition="'$(GameDirectory)' == '' and '$(FindGameDirectoryPropsGotImported)' != 'true'" />
+  <Import Project="FindBepInExDirectory.props" Condition="'$(GameDirectory)' != '' and '$(FindBepInExDirectoryPropsGotImported)' != 'true'" />
+
+  <PropertyGroup>
+    <GameDirectory Condition="Exists($(GameDirectory))">$([MSBuild]::NormalizeDirectory($(GameDirectory)))</GameDirectory>
+    <BepInExDirectory Condition="Exists($(BepInExDirectory))">$([MSBuild]::NormalizeDirectory($(BepInExDirectory)))</BepInExDirectory>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameExe Condition="'$(GameExe)' == ''">Lethal Company.exe</GameExe>
+  </PropertyGroup>
+  
+</Project>

@@ -1,0 +1,61 @@
+﻿{
+ "$schema": "http://json.schemastore.org/template",
+ "author": "linkoid",
+ "classifications": [ "Common", "Code" ],
+ "identity": "Linkoid.LethalCompany.Test.Templates.SmiteUnit.Injection",
+ "groupIdentity": "Linkoid.LethalCompany.Test.Templates",
+ "name": "Lethal Company Templates: Smite Unit Injection",
+ "shortName": [ "lcsmiteinject", "lcsmiteinjection", "lcsmiteunitinjection" ],
+ "tags": {
+  "language": "C#",
+  "type": "item"
+ },
+ "symbols": {
+  "msbuild-namespace": {
+   "type": "bind",
+   "binding": "msbuild:RootNamespace",
+   "replaces": "SmiteUnitPlugin._0",
+   "defaultValue": "MyPlugin"
+  },
+  "host-namespace": {
+   "type": "bind",
+   "binding": "host:namespace",
+   "replaces": "SmiteUnitPlugin._0"
+  },
+  "context-namespace": {
+   "type": "bind",
+   "binding": "namespace",
+   "replaces": "SmiteUnitPlugin._0"
+  },
+  "namespace": {
+   "type": "parameter",
+   "replaces": "SmiteUnitPlugin._0"
+  }
+ },
+ "postActions": [
+  {
+   "description": "Adding Reference to Linkoid.SmiteUnit.Unity",
+   "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+   "args": {
+    "referenceType": "package",
+    "reference": "Linkoid.SmiteUnit.Unity",
+    "version": "0.1.*-*"
+   },
+   "manualInstructions": [
+    { "text": "Add a package reference to \"Linkoid.SmiteUnit.Unity\" with Version=\"0.1.*-*\" to your project file." }
+   ]
+  },
+  {
+   "description": "Adding Reference to Linkoid.SmiteUnit.Injection",
+   "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+   "args": {
+    "referenceType": "package",
+    "reference": "Linkoid.SmiteUnit.Injection",
+    "version": "0.3.*-*"
+   },
+   "manualInstructions": [
+    { "text": "Add a package reference to \"Linkoid.SmiteUnit.Injection\" with Version=\"0.3.*-*\" to your project file." }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
+    <PackageType>Template</PackageType>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Description>TODO: fill the package description here</Description>
+    <PackageTags>TODO: fill the tags here</PackageTags>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>Content</ContentTargetFolders>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LocalizeTemplates>false</LocalizeTemplates>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TemplateEngine.Authoring.Tasks" Version="*" PrivateAssets="all" IsImplicitlyDefined="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ContentExclude Include="Content/**/bin/**;Content/**/obj/**;Content/**/.vs/**" />
+    <ContentExclude Include="Content/LethalCompany.Test.Templates.Content.sln" />
+    <ContentExclude Include="Content/Directory.Build.props" />
+    <ContentExclude Include="Content/**/.runsettings" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="@(ContentExclude)" />
+    <Content Include="Content/**/*" Exclude="@(ContentExclude)" />
+    <Compile Remove="**/*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<Content Include="Content/SmiteUnitPlugin/UnitySmiteInjectionHelper.cs"
+             Link="Content/SmiteUnitInjection/%(Filename)%(Extension)" />-->
+  </ItemGroup>
+
+</Project>

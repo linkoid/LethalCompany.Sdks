@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <!--<Sdk Name="Linkoid.Build.ProjectAsPackageReference" Version="1.0.0" />-->
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <EnableGameReferences>true</EnableGameReferences>
+    <EnableUnityReferences>true</EnableUnityReferences>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--<ProjectAsPackageReference Include="../Build.Plugin/Build.Plugin.csproj" />-->
+    <PackageReference Include="Linkoid.LethalCompany.Plugin.Build" Version="1.0.0" PrivateAssets="all" Private="true" />
+  </ItemGroup>
+
+  <Target Name="LogProperties" BeforeTargets="Build">
+    <Message Text="GameDirectory: $(GameDirectory)" Importance="high" />
+    <Message Text="BepInExDirectory: $(BepInExDirectory)" Importance="high" />
+    <Message Text="GameManagedDirectory: $(GameManagedDirectory)" Importance="high" />
+    <Message Text="EnableGameReferences: $(EnableGameReferences)" Importance="high" />
+    <Message Text="EnableUnityReferences: $(EnableUnityReferences)" Importance="high" />
+    <Message Text="_UnityEngineModule: @(_UnityEngineModule)" Importance="high" />
+  </Target>
+
+</Project>

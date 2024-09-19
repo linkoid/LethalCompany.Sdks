@@ -1,0 +1,18 @@
+﻿<Project>
+  
+  <PropertyGroup>
+    <FindBepInExSubpathsTargetsGotImported>true</FindBepInExSubpathsTargetsGotImported>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(PluginOutputSubdirectory)' == ''">
+    <PluginOutputSubdirectory Condition="'$(PluginName)' != ''">$(PluginName)</PluginOutputSubdirectory>
+    <PluginOutputSubdirectory Condition="'$(PluginOutputSubdirectory)' == ''">$(MSBuildProjectName)</PluginOutputSubdirectory>
+    <PluginOutputSubdirectory Condition="'$(Authors)' != ''">$(Authors)-$(PluginOutputSubdirectory)</PluginOutputSubdirectory>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PluginDirectory Condition="'$(PluginDirectory)' == ''">$([MSBuild]::NormalizeDirectory($(BepInExDirectory), plugins))</PluginDirectory>
+    <PluginOutputDirectory Condition="'$(PluginOutputDirectory)' == ''">$([MSBuild]::NormalizeDirectory($(PluginDirectory), $(PluginOutputSubdirectory)))</PluginOutputDirectory>
+  </PropertyGroup>
+  
+</Project>

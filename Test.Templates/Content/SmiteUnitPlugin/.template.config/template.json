@@ -1,0 +1,15 @@
+﻿{
+ "$schema": "http://json.schemastore.org/template",
+ "author": "linkoid",
+ "classifications": [ "Common", "Console" ],
+ "identity": "Linkoid.LethalCompany.Test.Templates.SmiteUnit.Plugin",
+ "groupIdentity": "Linkoid.LethalCompany.Test.Templates",
+ "name": "Lethal Company Templates: Smite Unit Plugin Project",
+ "shortName": [ "lcsmiteplugin", "lcsmiteunitplugin" ],
+ "tags": {
+  "language": "C#",
+  "type": "project"
+ },
+ "sourceName": "SmiteUnitPlugin.0",
+ "defaultName": "MyPlugin"
+}

@@ -1,0 +1,25 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <GameReferencesTargetsGotImported>true</GameReferencesTargetsGotImported>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Enable "Add Assembly Reference" -->
+    <AssemblyReferenceTabs>TAB_ASSEMBLY_EXTENSIONS</AssemblyReferenceTabs>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="Exists($(GameDirectory))">
+    <!-- Add certain game folders to AssemblySearchPaths so explicit hint paths aren't necessary -->
+    <AssemblySearchPaths Condition="Exists($(GameManagedDirectory))">$(AssemblySearchPaths);$(GameManagedDirectory)</AssemblySearchPaths>
+    <AssemblySearchPaths Condition="Exists($(PluginDirectory))">$(AssemblySearchPaths);$(PluginDirectory)</AssemblySearchPaths>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp"            Exclude="@(Reference)" Private="false" />
+    <Reference Include="Facepunch.Steamworks.Win64" Exclude="@(Reference)" Private="false" />
+    <Reference Include="Unity.TextMeshPro"          Exclude="@(Reference)" Private="false" />
+    <Reference Include="Unity.Netcode.Runtime"      Exclude="@(Reference)" Private="false" />
+  </ItemGroup>
+
+</Project>

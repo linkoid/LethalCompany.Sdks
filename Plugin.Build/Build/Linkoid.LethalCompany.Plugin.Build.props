@@ -1,0 +1,24 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <IsLethalCompanyPluginProject>true</IsLethalCompanyPluginProject>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PluginName Condition="'$(PluginName)' == ''">$(MSBuildProjectName.Replace(" ", "").Replace(".", "_").Replace("-", "_"))</PluginName>
+    <StartGameOnRun Condition="'$(StartGameOnRun)' == ''">true</StartGameOnRun>
+    <EnableGameReferences Condition="'$(EnableGameReferences)' == ''">false</EnableGameReferences>
+    <EnableUnityReferences Condition="'$(EnableUnityReferences)' == ''"></EnableUnityReferences>
+    <CopyFilesToPluginOutputDirectoryOnBuild Condition="'$(CopyFilesToPluginOutputDirectoryOnBuild)' == ''">true</CopyFilesToPluginOutputDirectoryOnBuild>
+    <CopyFilesToPluginOutputDirectoryOnRun Condition="'$(CopyFilesToPluginOutputDirectoryOnRun)' == ''">true</CopyFilesToPluginOutputDirectoryOnRun>
+  </PropertyGroup>
+
+  <!-- Embed Debug Symbols for Easier Debugging -->
+  <PropertyGroup>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>embedded</DebugType>
+    <!-- Trim the project path to prevent players from potentially viewing private information in stack traces -->
+    <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)'))=$(MSBuildProjectName)/</PathMap>
+  </PropertyGroup>
+
+</Project>

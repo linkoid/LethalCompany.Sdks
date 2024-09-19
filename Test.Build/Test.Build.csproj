@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.56">
+  
+  <PropertyGroup>
+    <NoTargetsDoNotReferenceOutputAssemblies>false</NoTargetsDoNotReferenceOutputAssemblies>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Plugin.Build\Plugin.Build.csproj" IncludeAssets="all" ExcludeAssets="none" PrivateAssets="none" />
+    <ProjectReference Include="..\Common.Build\Common.Build.csproj" IncludeAssets="all" ExcludeAssets="none" PrivateAssets="none" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Linkoid.Build.Tasks.RunSettings" Version="1.0.*" IncludeAssets="all" ExcludeAssets="none" PrivateAssets="none" />
+  </ItemGroup>
+  
+</Project>

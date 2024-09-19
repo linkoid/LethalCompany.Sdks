@@ -1,0 +1,44 @@
+﻿<!--
+This file is inspired by Pathoschild/SMAPI's find-game-folder.targets which is under the MIT License.
+https://github.com/Pathoschild/SMAPI/blob/921d9d495747cd494bd06fc2ee689063a17873a6/build/find-game-folder.targets
+-->
+
+<Project>
+  
+  <PropertyGroup>
+    <FindGameDirectoryPropsGotImported>true</FindGameDirectoryPropsGotImported>
+  </PropertyGroup>
+
+  <!-- Windows -->
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <!-- Try getting it from the registry -->
+    <GameDirectory Condition="!Exists($(GameDirectory))">$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 1966720', 'InstallLocation', null, RegistryView.Registry64, RegistryView.Registry32))</GameDirectory>
+
+    <!-- Derive from Steam library path -->
+    <_SteamLibraryPath>$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\SOFTWARE\Valve\Steam', 'SteamPath', null, RegistryView.Registry32))</_SteamLibraryPath>
+    <GameDirectory Condition="!Exists($(GameDirectory)) and '$(_SteamLibraryPath)' != ''">$(_SteamLibraryPath)\steamapps\common\Lethal Company</GameDirectory>
+
+    <!-- Steam paths -->
+    <GameDirectory Condition="!Exists($(GameDirectory))">C:\Program Files\Steam\steamapps\common\Lethal Company</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">C:\Program Files (x86)\Steam\steamapps\common\Lethal Company</GameDirectory>
+  </PropertyGroup>
+
+  <!-- Linux -->
+  <PropertyGroup Condition="$(OS) == 'Unix'">
+    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.steam/steam/steamapps/common/Lethal Company</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.local/share/Steam/steamapps/common/Lethal Company</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/common/Lethal Company</GameDirectory>
+  </PropertyGroup>
+  
+  <!-- MacOS -->
+  <PropertyGroup Condition="'$(OS)' == 'OSX' or $(OS) == 'Unix'">
+    <GameDirectory Condition="!Exists($(GameDirectory))">/Applications/Lethal Company.app/Contents/MacOS</GameDirectory>
+    <GameDirectory Condition="!Exists($(GameDirectory))">$(HOME)/Library/Application Support/Steam/steamapps/common/Lethal Company/Contents/MacOS</GameDirectory>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameDirectory Condition="!Exists($(GameDirectory))"></GameDirectory>
+    <GameDirectory Condition="Exists($(GameDirectory))">$([MSBuild]::NormalizeDirectory($(GameDirectory)))</GameDirectory>
+  </PropertyGroup>
+  
+</Project>

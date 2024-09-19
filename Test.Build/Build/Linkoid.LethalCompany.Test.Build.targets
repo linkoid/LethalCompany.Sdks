@@ -1,0 +1,27 @@
+﻿<Project>
+
+  <!-- Automated RunSettings Generation -->
+  <ItemGroup>
+    <RunSettingElements Include="RunConfiguration/EnvironmentVariables"
+                        Condition="!@(RunSettingElements->AnyHaveMetadataValue('Identity', 'RunConfiguration/EnvironmentVariables'))" />
+    <RunSettingElements Update="RunConfiguration/EnvironmentVariables">
+      <GAME_DIRECTORY Condition="'%(RunSettingElements.GAME_DIRECTORY)' == ''">$(GameDirectory)</GAME_DIRECTORY>
+      <GAME_EXE_PATH Condition="'%(RunSettingElements.GAME_EXE_PATH)' == ''">$(GameExePath)</GAME_EXE_PATH>
+      <BEPINEX_DIRECTORY Condition="'%(RunSettingElements.BEPINEX_DIRECTORY)' == ''">$(BepInExDirectory)</BEPINEX_DIRECTORY>
+    </RunSettingElements>
+  </ItemGroup>
+
+  <!-- Determine where the test assemblies should be copied to based on referenced projects -->
+  <Target Name="GetTestPluginOutputDirectory"
+          DependsOnTargets="GetProjectsWithLethalCompanyProperties"
+          BeforeTargets="CopyFilesToPluginOutputDirectory;GetLethalCompanyProperties">
+    <PropertyGroup>
+      <_NewPluginOutputDirectory Condition="'$(_NewPluginOutputDirectory)' == ''">@(ProjectWithLethalCompanyProperties->WithMetadataValue('IsLethalCompanyPlugin', 'true')->'%(PluginOutputDirectory)')</_NewPluginOutputDirectory>
+      <_NewPluginOutputDirectory Condition="'$(_NewPluginOutputDirectory)' == ''">@(ProjectWithLethalCompanyProperties->WithMetadataValue('IsLethalCompanyProject', 'true')->'%(PluginOutputDirectory)')</_NewPluginOutputDirectory>
+      <_NewPluginOutputDirectory Condition="'$(_NewPluginOutputDirectory)' == ''">@(ProjectWithLethalCompanyProperties->'%(PluginOutputDirectory)')</_NewPluginOutputDirectory>
+
+      <PluginOutputDirectory Condition="'$(_NewPluginOutputDirectory)' != ''">$(_NewPluginOutputDirectory)</PluginOutputDirectory>
+    </PropertyGroup>
+  </Target>
+
+</Project>

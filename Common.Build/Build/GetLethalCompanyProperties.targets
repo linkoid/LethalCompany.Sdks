@@ -1,0 +1,53 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <GetLethalCompanyPropertiesTargetsGotImported>true</GetLethalCompanyPropertiesTargetsGotImported>
+  </PropertyGroup>
+  
+  <Target Name="GetLethalCompanyProperties"
+          Returns="@(_LethalCompanyProperties)">
+    <PropertyGroup>
+      <IsLethalCompanyProject Condition="'$(IsLethalCompanyProject)' != 'true'">false</IsLethalCompanyProject>
+      <IsLethalCompanyPluginProject Condition="'$(IsLethalCompanyPluginProject)' != 'true'">false</IsLethalCompanyPluginProject>
+      <IsLethalCompanyTestProject Condition="'$(IsLethalCompanyTestProject)' != 'true'">false</IsLethalCompanyTestProject>
+    </PropertyGroup>
+    <ItemGroup>
+      <_LethalCompanyProperties Include="$(MSBuildProjectFullPath)">
+        <IsLethalCompanyProject>$(IsLethalCompanyProject)</IsLethalCompanyProject>
+        <IsLethalCompanyPluginProject>$(IsLethalCompanyPluginProject)</IsLethalCompanyPluginProject>
+        <IsLethalCompanyTestProject>$(IsLethalCompanyTestProject)</IsLethalCompanyTestProject>
+        <GameDirectory>$(GameDirectory)</GameDirectory>
+        <GameExe>$(GameExe)</GameExe>
+        <GameExePath>$(GameExePath)</GameExePath>
+        <GameManagedDirectory>$(GameManagedDirectory)</GameManagedDirectory>
+        <PluginName>$(PluginName)</PluginName>
+        <PluginDirectory>$(PluginDirectory)</PluginDirectory>
+        <PluginOutputSubdirectory>$(PluginOutputSubdirectory)</PluginOutputSubdirectory>
+        <PluginOutputDirectory>$(PluginOutputDirectory)</PluginOutputDirectory>
+      
+    </_LethalCompanyProperties>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="GetProjectsWithLethalCompanyProperties"
+          DependsOnTargets="_SplitProjectReferencesByFileExistence"
+          Returns="@(ProjectWithLethalCompanyProperties)">
+    <PropertyGroup>
+      <_GetLethalCompanyPropertiesProjectProperties>
+        DisableFastUpToDateCheck=false;
+        CustomAfterMicrosoftCommonProps=$(MSBuildThisFileDirectory)LethalCompany.AfterCommon.props;
+        CustomAfterMicrosoftCommonCrossTargetingTargets=$(MSBuildThisFileDirectory)LethalCompany.AfterCommon.targets;
+        CustomAfterMicrosoftCommonTargets=$(MSBuildThisFileDirectory)LethalCompany.AfterCommon.targets;
+      </_GetLethalCompanyPropertiesProjectProperties>
+    </PropertyGroup>
+
+    <MSBuild Projects="@(_MSBuildProjectReferenceExistent)"
+             Targets="GetLethalCompanyProperties"
+             BuildInParallel="$(BuildInParallel)"
+             Properties="%(_MSBuildProjectReferenceExistent.SetConfiguration); %(_MSBuildProjectReferenceExistent.SetPlatform); $(_GetLethalCompanyPropertiesProjectProperties)"
+             RemoveProperties="%(_MSBuildProjectReferenceExistent.GlobalPropertiesToRemove)">
+      <Output TaskParameter="TargetOutputs" ItemName="ProjectWithLethalCompanyProperties" />
+    </MSBuild>
+  </Target>
+  
+</Project>

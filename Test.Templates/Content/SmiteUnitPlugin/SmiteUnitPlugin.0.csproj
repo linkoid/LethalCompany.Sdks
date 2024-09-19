@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <!-- Add Package Sources -->
+  <PropertyGroup>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <!-- Package References -->
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.*" ExcludeAssets="runtime" />
+    <PackageReference Include="LethalCompany.GameLibs.Steam" Version="*-*" ExcludeAssets="runtime" />
+    <PackageReference Include="Linkoid.LethalCompany.Plugin.Build" Version="1.0.0" PrivateAssets="all" />
+  </ItemGroup>
+  
+  <!-- SmiteUnit Package References -->
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <PackageReference Include="Linkoid.SmiteUnit.Injection" Version="0.3.*-*" PrivateAssets="all" />
+    <PackageReference Include="Linkoid.SmiteUnit.Unity" Version="0.1.*-*" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

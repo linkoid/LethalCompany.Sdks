@@ -1,0 +1,16 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <UnityReferencesTargetsGotImported>true</UnityReferencesTargetsGotImported>
+  </PropertyGroup>
+
+  <ItemGroup Condition="Exists($(GameManagedDirectory))">
+    <_UnityEngineModule Include="$(GameManagedDirectory)UnityEngine.*.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UnityEngine" Exclude="@(Reference)" Private="false" />
+    <Reference Include="@(_UnityEngineModule->'%(Filename)')" Exclude="@(Reference)" Private="false" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,86 @@
+﻿<Project>
+
+  <ItemGroup>
+    <None Update="README.md;README.txt;manifest.json">
+      <CopyToPluginOutputDirectory Condition="'%(None.CopyToPluginOutputDirectory)' == ''">PreserveNewest</CopyToPluginOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <Target Name="GetCopyToPluginOutputItems">
+    <ItemGroup>
+      <_CopyToPluginOutputCandidate Include="@(Content)" ItemSource="Content" />
+      <_CopyToPluginOutputCandidate Include="@(None)" ItemSource="None" />
+
+      <_CopyToPluginOutputCandidate Update="@(_CopyToPluginOutputCandidate)"
+                                    Condition="'%(_CopyToPluginOutputCandidate.CopyToPluginOutputDirectory)' == ''"
+                                    CopyToPluginOutputDirectory="%(_CopyToPluginOutputCandidate.CopyToOutputDirectory)" />
+
+      <_CopyToPluginOutputCandidate Update="@(Content)"
+                                    Condition="'%(_CopyToPluginOutputCandidate.CopyToPluginOutputDirectory)' == ''"
+                                    CopyToPluginOutputDirectory="Always" />
+      
+      <_CopyToPluginOutputCandidate Update="@(None)"
+                                    Condition="'%(_CopyToPluginOutputCandidate.CopyToPluginOutputDirectory)' == ''"
+                                    CopyToPluginOutputDirectory="Never" />
+      
+      <_CopyToPluginOutputCandidate Update="@(_CopyToPluginOutputCandidate)"
+                                    Condition="'%(_CopyToPluginOutputCandidate.Link)' != ''"
+                                    TargetPath="%(_CopyToPluginOutputCandidate.Link)" />
+
+      <CopyToPluginOutputItems Include="@(_CopyToPluginOutputCandidate->HasMetadata('CopyToPluginOutputDirectory'))"
+                               Exclude="@(CopyToPluginOutputItems)"
+                               Condition="'%(_CopyToPluginOutputCandidate.CopyToPluginOutputDirectory)' == 'true'
+                                          or '%(_CopyToPluginOutputCandidate.CopyToPluginOutputDirectory)' == 'Always'
+                                          or '%(_CopyToPluginOutputCandidate.CopyToPluginOutputDirectory)' == 'PreserveNewest'">
+        <TargetPath Condition="'%(_CopyToPluginOutputCandidate.TargetPath)' == ''">%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+      </CopyToPluginOutputItems>
+    </ItemGroup>
+
+    <ItemGroup>
+      <_BuiltPluginOutputItems Include="$([MSBuild]::EnsureTrailingSlash($(OutputPath)))**"
+                               Exclude="**/*.deps.json" />
+      
+      <CopyToPluginOutputItems Include="$(TargetPath)">
+        <TargetPath>$(TargetFileName)</TargetPath>
+        <CopyToPluginOutputDirectory>PreserveNewest</CopyToPluginOutputDirectory>
+        <ItemSource>TargetPath</ItemSource>
+      </CopyToPluginOutputItems>
+      
+      <CopyToPluginOutputItems Include="@(_BuiltPluginOutputItems)" 
+                               Exclude="@(CopyToPluginOutputItems)"
+                               KeepDuplicates="false">
+        <TargetPath>%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+        <CopyToPluginOutputDirectory>Always</CopyToPluginOutputDirectory>
+        <ItemSource>OutputPath</ItemSource>
+      </CopyToPluginOutputItems>
+    </ItemGroup>
+    
+    <Message Text="CopyToPluginOutputItems:&#xA;@(CopyToPluginOutputItems->'[%(ItemSource)] %(Filename)%(Extension) -> %(TargetPath) (%(CopyToPluginOutputDirectory))', '&#xA;')" Importance="high" />
+  </Target>
+
+  <Target Name="CopyFilesToPluginOutputDirectory"
+          DependsOnTargets="GetCopyToPluginOutputItems">
+    <ItemGroup>
+      <_CopyToPluginOutputPreserveNewest Include="@(CopyToPluginOutputItems)"
+                                         Condition="%(CopyToPluginOutputItems.CopyToPluginOutputDirectory) == 'PreserveNewest'" />
+      <_CopyToPluginOutputAlways Include="@(CopyToPluginOutputItems)"
+                                 Exclude="@(_CopyToPluginOutputPreserveNewest)" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_CopyToPluginOutputPreserveNewest)"
+          DestinationFiles="@(_CopyToPluginOutputPreserveNewest->'$(PluginOutputDirectory)%(TargetPath)')"
+          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_CopyToPluginOutputAlways)"
+          DestinationFiles="@(_CopyToPluginOutputAlways->'$(PluginOutputDirectory)%(TargetPath)')" />
+  </Target>
+
+  <Target Name="_CopyFilesToPluginOutputDirectoryAfterBuild"
+          DependsOnTargets="CopyFilesToPluginOutputDirectory"
+          AfterTargets="Build" 
+          Condition="'$(CopyFilesToPluginOutputDirectoryOnBuild)' == 'true'" />
+
+  <Target Name="_CopyFilesToPluginOutputDirectoryBeforeRun"
+          DependsOnTargets="CopyFilesToPluginOutputDirectory"
+          BeforeTargets="Run"
+          Condition="'$(CopyFilesToPluginOutputDirectoryOnRun)' == 'true'" />
+
+</Project>

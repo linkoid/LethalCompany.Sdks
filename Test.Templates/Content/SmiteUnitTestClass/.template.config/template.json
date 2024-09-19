@@ -1,0 +1,38 @@
+﻿{
+ "$schema": "http://json.schemastore.org/template",
+ "author": "linkoid",
+ "classifications": [ "Common", "Code" ],
+ "identity": "Linkoid.LethalCompany.Test.Templates.SmiteInjection",
+ "groupIdentity": "Linkoid.LethalCompany.Test.Templates",
+ "name": "Lethal Company Templates: Smite Injection",
+ "shortName": [ "lcsmitetest", "lcsmiteunittest", "lcsmitetestclass", "lcsmiteunittestclass" ],
+ "tags": {
+  "language": "C#",
+  "type": "item"
+ },
+ "sourceName": "TestClass",
+ "defaultName": "TestClass",
+ "preferDefaultName": true,
+ "symbols": {
+  "msbuild-namespace": {
+   "type": "bind",
+   "binding": "msbuild:RootNamespace",
+   "replaces": "SmiteUnitTests._0",
+   "defaultValue": "MyPlugin.Tests"
+  },
+  "host-namespace": {
+   "type": "bind",
+   "binding": "host:namespace",
+   "replaces": "SmiteUnitTests._0"
+  },
+  "context-namespace": {
+   "type": "bind",
+   "binding": "namespace",
+   "replaces": "SmiteUnitTests._0"
+  },
+  "namespace": {
+   "type": "parameter",
+   "replaces": "SmiteUnitTests._0"
+  }
+ }
+}

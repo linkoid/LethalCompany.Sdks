@@ -1,0 +1,19 @@
+﻿<Project>
+  
+  <PropertyGroup>
+    <EnableUnityReferences Condition="'$(EnableUnityReferences)' == ''">$(EnableGameReferences)</EnableUnityReferences>
+  </PropertyGroup>
+  
+  <Import Project="GameReferences.targets" Condition="'$(EnableGameReferences)' == 'true' and '$(GameReferencesTargetsGotImported)' != 'true'" />
+  <Import Project="UnityReferences.targets" Condition="'$(EnableUnityReferences)' == 'true' and '$(UnityReferencesTargetsGotImported)' != 'true'" />
+
+  <Import Project="CopyFilesToPluginOutputDirectory.targets" />
+
+  <!-- Start Game on Run -->
+  <PropertyGroup Condition="$(StartGameOnRun)">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(GameExePath)</StartProgram>
+    <StartWorkingDirectory>$(GameDirectory)</StartWorkingDirectory>
+  </PropertyGroup>
+    
+</Project>

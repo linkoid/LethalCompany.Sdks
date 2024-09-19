@@ -1,0 +1,15 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <IsLethalCompanyPluginProject>false</IsLethalCompanyPluginProject>
+    <IsLethalCompanyTestProject>true</IsLethalCompanyTestProject>
+  </PropertyGroup>
+
+  <!-- Test projects should not start the game or copy files automatically -->
+  <PropertyGroup>
+    <StartGameOnRun>false</StartGameOnRun>
+    <CopyFilesToPluginOutputDirectoryOnBuild>false</CopyFilesToPluginOutputDirectoryOnBuild>
+    <CopyFilesToPluginOutputDirectoryOnRun>false</CopyFilesToPluginOutputDirectoryOnRun>
+  </PropertyGroup>
+
+</Project>

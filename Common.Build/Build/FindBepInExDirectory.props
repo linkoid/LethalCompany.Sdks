@@ -1,0 +1,16 @@
+﻿<Project>
+  
+  <PropertyGroup>
+    <FindBepInExDirectoryPropsGotImported>true</FindBepInExDirectoryPropsGotImported>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BepInExDirectory Condition="!Exists($(BepInExDirectory))">$(GameDirectory)/BepInEx</BepInExDirectory>
+  </PropertyGroup>
+
+
+  <PropertyGroup>
+    <BepInExDirectory Condition="!Exists($(BepInExDirectory))"></BepInExDirectory>
+    <BepInExDirectory Condition="Exists($(BepInExDirectory))">$([MSBuild]::NormalizeDirectory($(BepInExDirectory)))</BepInExDirectory>
+  </PropertyGroup>
+</Project>

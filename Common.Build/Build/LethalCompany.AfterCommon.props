@@ -1,0 +1,5 @@
+﻿<Project>
+  
+  <Import Project="LethalCompany.Common.props" Condition="'$(LethalCompanyCommonPropsGotImported)' != 'true'" />
+
+</Project>

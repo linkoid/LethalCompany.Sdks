@@ -1,8 +1,13 @@
 <Project>
-  <ItemGroup>
-    <None Include="$(MSBuildProjectDirectory)/README.md" Exclude="@(None)" Pack="true" PackagePath="/" Condition="$(IsPackable)" />
-    <Content Include="$(MSBuildProjectDirectory)/Build/**" Exclude="@(Content)" Pack="true" PackagePath="build/%(RecursiveDir)" Condition="$(IsPackable)" />
-    <Content Include="$(MSBuildProjectDirectory)/Sdk/**" Exclude="@(Content)" Pack="true" PackagePath="sdk/%(RecursiveDir)" Condition="$(IsPackable)" />
+  <ItemGroup Condition="$(IsPackable)">
+    <None Update="$(MSBuildProjectDirectory)/README.md" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildProjectDirectory)/Build/**" Pack="true" PackagePath="build/%(RecursiveDir)" />
+    <None Include="$(MSBuildProjectDirectory)/Sdk/**" Pack="true" PackagePath="sdk/%(RecursiveDir)" />
+    <None Include="$(MSBuildProjectDirectory)/Build/**" Pack="true" PackagePath="sdk/%(RecursiveDir)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(IsPackable)">
+    <PackageReference Include="Linkoid.Build.NuGetPushLocal" Version="1.0.0" PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="GetPackage"

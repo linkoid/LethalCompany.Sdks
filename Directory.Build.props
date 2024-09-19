@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <AssemblyName>Linkoid.LethalCompany.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>Linkoid.LethalCompany.$(MSBuildProjectName)</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>12</LangVersion>
@@ -10,7 +11,7 @@
   
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>Linkoid.$(MSBuildProjectName)</PackageId>
+    <PackageId>Linkoid.LethalCompany.$(MSBuildProjectName)</PackageId>
     <Authors>linkoid</Authors>
     <VersionPrefix>1.0.0</VersionPrefix>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
