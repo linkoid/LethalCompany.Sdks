@@ -29,7 +29,7 @@
 
   <!-- Allow tests to use internal classes and methods -->
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
-    <InternalsVisibleTo Include="SmiteUnitPlugin.0.Tests"/>
+    <InternalsVisibleTo Include="SmiteUnitProject.0.Tests" />
   </ItemGroup>
 
 </Project>

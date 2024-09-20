@@ -41,9 +41,9 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" Condition="!$(IsNetStandard)" />
     <PackageReference Include="coverlet.collector" Version="3.*" Condition="!$(IsNetStandard)" />
 
-    <PackageReference Include="Linkoid.LethalCompany.Test.Build" Version="1.0.0" />
+    <PackageReference Include="Linkoid.LethalCompany.Test.Build" Version="1.*" />
 
-    <PackageReference Include="Linkoid.SmiteUnit" Version="0.3.2-alpha.0" />
+    <PackageReference Include="Linkoid.SmiteUnit" Version="0.3.*-*" />
     <PackageReference Include="Linkoid.SmiteUnit.Unity" Version="0.1.*-*" />
     <!-- Injection is included just encase the plugin project is not configured to copy it to the output -->
     <PackageReference Include="Linkoid.SmiteUnit.Injection" Version="0.3.*-*" IncludeAssets="runtime" />
