@@ -1,15 +1,54 @@
 ﻿{
  "$schema": "http://json.schemastore.org/template",
  "author": "linkoid",
- "classifications": [ "Common", "Console" ],
+ "classifications": [ "BepInEx", "Lethal Company", "Mods", "Test", "SmiteUnit" ],
  "identity": "Linkoid.LethalCompany.Test.Templates.SmiteUnit.Plugin",
- "groupIdentity": "Linkoid.LethalCompany.Test.Templates",
- "name": "Lethal Company Templates: Smite Unit Plugin Project",
+ "name": "BepInEx Plugin with SmiteUnit Tests for Lethal Company",
+ "description": "A project that contains a BepInEx plugin which loads SmiteUnit injection tests from a second project and runs them in Lethal Company.",
  "shortName": [ "lcsmiteplugin", "lcsmiteunitplugin" ],
  "tags": {
   "language": "C#",
   "type": "project"
  },
+ "sources": [
+  {
+   "modifiers": [
+    {
+     "condition": "(!includetest)",
+     "exclude": [ "SmiteUnitPlugin.0.Tests/**/*" ]
+    }
+   ]
+  }
+ ],
+ "primaryOutputs": [
+  { "path": "SmiteUnitPlugin.0/SmiteUnitPlugin0.csproj" },
+  { "path": "SmiteUnitPlugin.0/SmiteUnitPlugin0.cs" }
+ ],
  "sourceName": "SmiteUnitPlugin.0",
- "defaultName": "MyPlugin"
+ "defaultName": "MyPlugin",
+ "preferNameDirectory": false,
+ "symbols": {
+  "HostIdentifier": {
+   "type": "bind",
+   "binding": "host:HostIdentifier"
+  },
+  "includetest": {
+   "type": "parameter",
+   "datatype": "bool",
+   "defaultValue": "true",
+   "displayName": "Include Test Project",
+   "description": "Include a separate SmiteUnit test project with the plugin."
+  }
+ },
+ "postActions": [
+  {
+   "id": "openInEditor",
+   "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+   "description": "Opens generated files in the editor",
+   "manualInstructions": [],
+   "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+   "args": { "files": "1" },
+   "continueOnError": true
+  }
+ ]
 }

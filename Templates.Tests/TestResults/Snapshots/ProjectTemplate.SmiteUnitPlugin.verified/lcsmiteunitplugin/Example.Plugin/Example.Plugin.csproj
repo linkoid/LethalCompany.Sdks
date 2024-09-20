@@ -27,4 +27,9 @@
     <PackageReference Include="Linkoid.SmiteUnit.Unity" Version="0.1.*-*" PrivateAssets="all" />
   </ItemGroup>
 
+  <!-- Allow tests to use internal classes and methods -->
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <InternalsVisibleTo Include="Example.Plugin.Tests"/>
+  </ItemGroup>
+
 </Project>

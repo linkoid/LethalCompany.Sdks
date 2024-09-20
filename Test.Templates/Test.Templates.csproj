@@ -10,11 +10,11 @@
     <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
     <PackageType>Template</PackageType>
     <PackageVersion>1.0.0</PackageVersion>
-    <Description>TODO: fill the package description here</Description>
-    <PackageTags>TODO: fill the tags here</PackageTags>
+    <Description>Provides templates for testing Lethal Company plugins</Description>
+    <PackageTags>Test, Lethal Company, SmiteUnit, BepInEx</PackageTags>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <ContentTargetFolders>Content</ContentTargetFolders>
+    <ContentTargetFolders>content</ContentTargetFolders>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -34,13 +34,29 @@
 
   <ItemGroup>
     <None Remove="@(ContentExclude)" />
-    <Content Include="Content/**/*" Exclude="@(ContentExclude)" />
+    <Content Include="Content/**/*" Exclude="@(ContentExclude)" CopyToOutputDirectory="Always" />
     <Compile Remove="**/*" />
   </ItemGroup>
 
   <ItemGroup>
-    <!--<Content Include="Content/SmiteUnitPlugin/UnitySmiteInjectionHelper.cs"
-             Link="Content/SmiteUnitInjection/%(Filename)%(Extension)" />-->
+    <ContentCopy Include="Content/SmiteUnitTests/**" Exclude="**/.template.config/**">
+      <Link>Content/SmiteUnitPlugin/SmiteUnitPlugin.0.Tests/%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </ContentCopy>
+    <ContentCopy Include="Content/SmiteUnitPlugin/SmiteUnitPlugin.0/LethalSmiteInjectionHelper.cs">
+      <Link>Content/SmiteUnitInjection/%(Filename)%(Extension)</Link>
+    </ContentCopy>
+    <ContentCopy Include="Content/SmiteUnitTests/TestClass.cs">
+      <Link>Content/SmiteUnitTestClass/%(Filename)%(Extension)</Link>
+    </ContentCopy>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="@(ContentCopy)" Exclude="@(ContentExclude)">
+      <Pack>true</Pack>
+      <PackagePath>content/%(Link)</PackagePath>
+      <Visible>true</Visible>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

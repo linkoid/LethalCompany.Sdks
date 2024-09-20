@@ -25,7 +25,7 @@
 
   <!-- Configue Plugin References -->
   <ItemGroup>
-    <ProjectReference Include="../SmiteUnitPlugin/SmiteUnitPlugin.0.csproj" ExcludeAssets="$(NetStandardRuntimeAssets)" />
+    <ProjectReference Include="../Example.Plugin/Example.Plugin.csproj" ExcludeAssets="$(NetStandardRuntimeAssets)" />
   </ItemGroup>
 
   <!-- Add Package Sources -->

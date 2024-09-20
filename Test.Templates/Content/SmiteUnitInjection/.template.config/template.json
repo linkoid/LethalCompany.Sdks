@@ -1,16 +1,23 @@
 ﻿{
  "$schema": "http://json.schemastore.org/template",
  "author": "linkoid",
- "classifications": [ "Common", "Code" ],
+ "classifications": [ "Lethal Company", "Mods", "Test", "SmiteUnit" ],
  "identity": "Linkoid.LethalCompany.Test.Templates.SmiteUnit.Injection",
- "groupIdentity": "Linkoid.LethalCompany.Test.Templates",
- "name": "Lethal Company Templates: Smite Unit Injection",
+ "name": "Lethal Smite Injection Helper",
+ "description": "A class for a plugin project that helps inject and run SmiteUnit tests in Lethal Company.",
  "shortName": [ "lcsmiteinject", "lcsmiteinjection", "lcsmiteunitinjection" ],
  "tags": {
   "language": "C#",
   "type": "item"
  },
+ "primaryOutputs": [ { "path": "LethalSmiteInjectionHelper.cs" } ],
+ "defaultName": "LethalSmiteInjectionHelper",
+ "preferDefaultName": true,
  "symbols": {
+  "HostIdentifier": {
+   "type": "bind",
+   "binding": "host:HostIdentifier"
+  },
   "msbuild-namespace": {
    "type": "bind",
    "binding": "msbuild:RootNamespace",
@@ -43,7 +50,8 @@
    },
    "manualInstructions": [
     { "text": "Add a package reference to \"Linkoid.SmiteUnit.Unity\" with Version=\"0.1.*-*\" to your project file." }
-   ]
+   ],
+   "continueOnError": true
   },
   {
    "description": "Adding Reference to Linkoid.SmiteUnit.Injection",
@@ -55,7 +63,26 @@
    },
    "manualInstructions": [
     { "text": "Add a package reference to \"Linkoid.SmiteUnit.Injection\" with Version=\"0.3.*-*\" to your project file." }
-   ]
+   ],
+   "continueOnError": true
+  },
+  {
+   "id": "openInEditor",
+   "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+   "description": "Opens generated files in the editor",
+   "manualInstructions": [],
+   "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+   "args": { "files": "0" },
+   "continueOnError": true
+  },
+  {
+   "description": "Add code to create and start the helper",
+   "actionId": "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C",
+   "applyFileRenamesToManualInstructions": true,
+   "manualInstructions": [
+    { "text": "Add the following lines to the Awake() method of you plugin class:\n\n  #if DEBUG\n  LethalSmiteInjectionHelper.Create(\"INSERT_NAME_OF_TEST_ASSEMBLY_HERE\").Start();\n  #endif\n" }
+   ],
+   "continueOnError": true
   }
  ]
 }

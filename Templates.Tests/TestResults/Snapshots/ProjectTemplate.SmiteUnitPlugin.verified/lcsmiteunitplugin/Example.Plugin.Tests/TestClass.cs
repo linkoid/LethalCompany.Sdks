@@ -5,7 +5,7 @@ using SmiteUnit.Framework;
 using SmiteUnit.Unity;
 using UnityEngine;
 
-namespace SmiteUnitTests._0
+namespace Example.Plugin.Tests
 {
     // The SmiteProcessAttribute tells the test adapter which program to start
     [SmiteProcess("%GAME_EXE_PATH%", "-logfile -")]

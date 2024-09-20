@@ -1,38 +1,54 @@
 ﻿{
  "$schema": "http://json.schemastore.org/template",
  "author": "linkoid",
- "classifications": [ "Common", "Code" ],
- "identity": "Linkoid.LethalCompany.Test.Templates.SmiteInjection",
- "groupIdentity": "Linkoid.LethalCompany.Test.Templates",
- "name": "Lethal Company Templates: Smite Injection",
+ "classifications": [ "Lethal Company", "Mods", "Test", "SmiteUnit" ],
+ "identity": "Linkoid.LethalCompany.Test.Templates.SmiteUnitTestClass",
+ "name": "SmiteUnit Test Class (Lethal Company)",
+ "description": "A class for a test project which holds SmiteUnit tests for Lethal Company.",
  "shortName": [ "lcsmitetest", "lcsmiteunittest", "lcsmitetestclass", "lcsmiteunittestclass" ],
  "tags": {
   "language": "C#",
   "type": "item"
  },
+ "primaryOutputs": [ { "path": "TestClass.cs" } ],
  "sourceName": "TestClass",
  "defaultName": "TestClass",
  "preferDefaultName": true,
  "symbols": {
+  "HostIdentifier": {
+   "type": "bind",
+   "binding": "host:HostIdentifier"
+  },
   "msbuild-namespace": {
    "type": "bind",
    "binding": "msbuild:RootNamespace",
-   "replaces": "SmiteUnitTests._0",
+   "replaces": "SmiteUnitPlugin._0.Tests",
    "defaultValue": "MyPlugin.Tests"
   },
   "host-namespace": {
    "type": "bind",
    "binding": "host:namespace",
-   "replaces": "SmiteUnitTests._0"
+   "replaces": "SmiteUnitPlugin._0.Tests"
   },
   "context-namespace": {
    "type": "bind",
    "binding": "namespace",
-   "replaces": "SmiteUnitTests._0"
+   "replaces": "SmiteUnitPlugin._0.Tests"
   },
   "namespace": {
    "type": "parameter",
-   "replaces": "SmiteUnitTests._0"
+   "replaces": "SmiteUnitPlugin._0.Tests"
   }
- }
+ },
+ "postActions": [
+  {
+   "id": "openInEditor",
+   "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+   "description": "Opens generated files in the editor",
+   "manualInstructions": [],
+   "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+   "args": { "files": "0" },
+   "continueOnError": true
+  }
+ ]
 }

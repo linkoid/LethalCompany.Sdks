@@ -21,7 +21,13 @@ internal static class FileLocator
 
     public static string GetTemplateLocation(string projectName, string templateName)
     {
-        return Path.Combine(CodeBase.FullName, projectName, "Content", templateName);
+        return Path.Combine(CodeBase.FullName, projectName, "bin",
+#if DEBUG
+            "Debug",
+#else
+            "Release",
+#endif
+            "netstandard2.0", "Content", templateName);
     }
 
     public static FileInfo GetSourceFile(string projectName, string filePath)

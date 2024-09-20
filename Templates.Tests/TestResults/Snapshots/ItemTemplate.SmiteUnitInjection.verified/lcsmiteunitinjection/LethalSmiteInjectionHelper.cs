@@ -1,22 +1,21 @@
-﻿#if DEBUG // Test classes usually aren't included in releases.
+﻿#if DEBUG // Test code usually isn't included in releases
 
 using BepInEx.Logging;
 using UnityEngine;
 using SmiteUnit.Injection;
-using static UnityEngine.ScriptingUtility;
 
-namespace Example.Plugin
+namespace MyPlugin
 {
-    internal class UnitySmiteInjectionHelper : MonoBehaviour
+    internal class LethalSmiteInjectionHelper : MonoBehaviour
     {
         public SmiteInjection? SmiteInjection { get; set; }
         public string? TestAssemblyName { get; set; }
         private bool m_Started = false;
 
-        public static UnitySmiteInjectionHelper Create(string assemblyName)
+        public static LethalSmiteInjectionHelper Create(string assemblyName)
         {
             string injectionName = $"SmiteInjection.{assemblyName}";
-            var instance = new GameObject(injectionName).AddComponent<UnitySmiteInjectionHelper>();
+            var instance = new GameObject(injectionName).AddComponent<LethalSmiteInjectionHelper>();
             instance.TestAssemblyName = assemblyName;
 
             // Create a new SmiteInjection with the test assembly name

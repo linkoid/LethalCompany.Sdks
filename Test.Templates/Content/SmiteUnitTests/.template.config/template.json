@@ -1,16 +1,15 @@
 ﻿{
  "$schema": "http://json.schemastore.org/template",
  "author": "linkoid",
- "classifications": [ "Common", "Console" ],
+ "classifications": [ "Lethal Company", "Mods", "Test", "SmiteUnit" ],
  "identity": "Linkoid.LethalCompany.Test.Templates.SmiteUnitTests",
- "groupIdentity": "Linkoid.LethalCompany.Test.Templates",
- "name": "Lethal Company Templates: Smite Unit Tests Project",
+ "name": "SmiteUnit Test Project for Lethal Company",
+ "description": "A project that contains SmiteUnit tests that can run in Lethal Company.",
  "shortName": [ "lcsmitetests", "lcsmiteunittests" ],
  "tags": {
   "language": "C#",
   "type": "project"
  },
- "sourceName": "SmiteUnitTests.0",
  "sources": [
   {
    "exclude": [
@@ -19,6 +18,37 @@
     ".template.config/**/*",
     ".runsettings"
    ]
+  }
+ ],
+ "primaryOutputs": [
+  { "path": "SmiteUnitPlugin.0.Tests.csproj" },
+  { "path": "TestClass.cs" }
+ ],
+ "sourceName": "SmiteUnitPlugin.0.Tests",
+ "defaultName": "MyPlugin.Tests",
+ "symbols": {
+  "HostIdentifier": {
+   "type": "bind",
+   "binding": "host:HostIdentifier"
+  },
+  "plugin": {
+   "type": "parameter",
+   "defaultValue": "MyPlugin",
+   "replaces": "SmiteUnitPlugin.0",
+   "isRequired": true,
+   "displayName": "Existing Plugin Project Name",
+   "description": "The name of an existing plugin project for which to create this test."
+  }
+ },
+ "postActions": [
+  {
+   "id": "openInEditor",
+   "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+   "description": "Opens generated files in the editor",
+   "manualInstructions": [],
+   "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+   "args": { "files": "1" },
+   "continueOnError": true
   }
  ]
 }

@@ -9,7 +9,7 @@ public class TemplateTests : TemplateTestBase
 {
     [Test]
     [TestCase("SmiteUnitPlugin", "lcsmiteunitplugin", new[] { "-n", "Example.Plugin" })]
-    [TestCase("SmiteUnitTests", "lcsmiteunittests", new[] { "-n", "Example.Plugin.Tests" })]
+    [TestCase("SmiteUnitTests", "lcsmiteunittests", new[] { "-n", "Example.Plugin.Tests", "-p", "ExistingExample.Plugin" })]
     public async Task ProjectTemplate(string folderName, string shortName, string[] args)
     {
         var options = new TemplateVerifierOptions(templateName: shortName)
@@ -20,9 +20,6 @@ public class TemplateTests : TemplateTestBase
             SnapshotsDirectory = SnapshotsDirectory,
             DoNotPrependTemplateNameToScenarioName = true,
             DoNotAppendTemplateArgsToScenarioName = true,
-#if !DEBUG
-            DisableDiffTool = true,
-#endif
         };
 
         await VerificationEngine.Execute(options);
@@ -52,9 +49,6 @@ public class TemplateTests : TemplateTestBase
                 DoNotAppendTemplateArgsToScenarioName = true,
                 EnsureEmptyOutputDirectory = false,
                 VerificationExcludePatterns = ["obj/**/*"],
-#if !DEBUG
-                DisableDiffTool = true,
-#endif
             };
 
             await VerificationEngine.Execute(options);
