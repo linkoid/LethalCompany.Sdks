@@ -17,3 +17,17 @@ This monorepo contains source code for multiple SDK and template packages which 
 | [Plugin.Build](/Plugin.Build)          | Build and run a Lethal Company plugin.                     | [![NuGet](https://img.shields.io/nuget/v/Linkoid.LethalCompany.Plugin.Build  )](https://www.nuget.org/packages/Linkoid.LethalCompany.Plugin.Build/  ) | 
 | [Test.Build  ](/Test.Build  )          | Build a test project for a Lethal Company plugin.          | [![NuGet](https://img.shields.io/nuget/v/Linkoid.LethalCompany.Test.Build    )](https://www.nuget.org/packages/Linkoid.LethalCompany.Test.Build/    ) | 
 | [Test.Templates](/Test.Templates)      | Templates for Lethal Company plugin test projects.         | [![NuGet](https://img.shields.io/nuget/v/Linkoid.LethalCompany.Test.Templates)](https://www.nuget.org/packages/Linkoid.LethalCompany.Test.Templates/) |
+
+## Why more SDKs and Templates?
+Many of the existing SDKs and Templates include almost everything you could need. *Almost*.
+They can't solve every problem though, and it can be difficult to combine the functionality of one SDK or template with another.
+These SDKs are designed to work well with other templates, and not interfere with other SDKs.
+By leveraging the full power of MSBuild, these SDKs will automatically detect the local installation of Lethal Company,
+and copy the built plugin to the plugins folder automatically, then start the game with the IDE's play button or `dotnet run`.
+
+## The Test Framework
+**These templates include everything needed to immediately start writting tests using __SmiteUnit__**.
+SmiteUnit will inject unit tests into Lethal Company when the plugin initializes, allowing to test more complex
+scenarios that weren't possible before. Has a harmony transpilier been throwing lots of errors? Throw that patch in a 
+SmiteUnit Test and automate the test process! Did a game update break lots of functions? Run all the tests to see what code needs fixed.
+See more details about using SmiteUnit Templates in the Test.Template README: <https://github.com/linkoid/LethalCompany.Sdks/tree/main/Test.Templates#SmiteUnit-Templates>
