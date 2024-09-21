@@ -1,4 +1,12 @@
 ﻿# Lethal Company Plugin Build SDK
+[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/linkoid/LethalCompany.Sdks/tree/main/Plugin.Build#Lethal-Company-Plugin-Build-SDK)
+[![Stars](https://img.shields.io/github/stars/linkoid/LethalCompany.Sdks)](https://github.com/linkoid/LethalCompany.Sdks/stargazers)
+[![License](https://img.shields.io/github/license/linkoid/LethalCompany.Sdks)](https://github.com/linkoid/LethalCompany.Sdks/tree/main?tab=MIT-1-ov-file)
+
+[![Lethal Company Modding](https://custom-icon-badges.demolab.com/badge/Lethal_Company-Modding-FF3600.svg?labelColor=black&logo=lethalcompany)](https://lethal.wiki/)
+[![dotnet](https://img.shields.io/badge/dotnet-512BD4?logo=dotnet)](https://dotnet.microsoft.com/en-us/download)
+[![MSBuild](https://custom-icon-badges.demolab.com/badge/MSBuild-B35601.svg?logo=msbuild)](https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild)
+
 Provides MSBuild properties and targets for building and running a Lethal Company plugin.
 
 ## Usage
