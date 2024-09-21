@@ -3,6 +3,13 @@
   <PropertyGroup>
     <NoTargetsDoNotReferenceOutputAssemblies>false</NoTargetsDoNotReferenceOutputAssemblies>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>
+      Provides MSBuild properties and targets for building and running a Lethal Company plugin.
+    </Description>
+    <PackageTags>Lethal Company, MSBuild, BepInEx, Plugin</PackageTags>
+  </PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="../Common.Build/Common.Build.csproj" IncludeAssets="all" ExcludeAssets="none" PrivateAssets="none" />

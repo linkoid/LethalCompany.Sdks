@@ -4,4 +4,11 @@
     <NoTargetsDoNotReferenceOutputAssemblies>false</NoTargetsDoNotReferenceOutputAssemblies>
   </PropertyGroup>
   
+  <PropertyGroup>
+    <Description>
+      Provides minimal MSBuild properties for finding a Lethal Company installation on the local machine and other misc. targets.
+    </Description>
+    <PackageTags>Lethal Company, MSBuild</PackageTags>
+  </PropertyGroup>
+  
 </Project>
