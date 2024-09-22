@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Linkoid.LethalCompany.Plugin.Build" Version="1.0.0" PrivateAssets="all" Private="true" />
+    <PackageReference Include="Linkoid.LethalCompany.Plugin.Build" Version="$(VersionPrefix)" PrivateAssets="all" Private="true" />
   </ItemGroup>
 
   <Target Name="LogProperties" BeforeTargets="Build">

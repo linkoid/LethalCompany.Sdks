@@ -7,7 +7,7 @@
   <PropertyGroup Condition="'$(PluginOutputSubdirectory)' == ''">
     <PluginOutputSubdirectory Condition="'$(PluginName)' != ''">$(PluginName)</PluginOutputSubdirectory>
     <PluginOutputSubdirectory Condition="'$(PluginOutputSubdirectory)' == ''">$(MSBuildProjectName)</PluginOutputSubdirectory>
-    <PluginOutputSubdirectory Condition="'$(Authors)' != ''">$(Authors)-$(PluginOutputSubdirectory)</PluginOutputSubdirectory>
+    <PluginOutputSubdirectory Condition="'$(Authors)' != '' and '$(Authors)' != '$(AssemblyName)'">$(Authors)-$(PluginOutputSubdirectory)</PluginOutputSubdirectory>
   </PropertyGroup>
 
   <PropertyGroup>
