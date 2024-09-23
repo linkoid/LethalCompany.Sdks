@@ -12,7 +12,7 @@
   <PropertyGroup Condition="Exists($(GameDirectory))">
     <!-- Add certain game folders to AssemblySearchPaths so explicit hint paths aren't necessary -->
     <AssemblySearchPaths Condition="Exists($(GameManagedDirectory))">$(AssemblySearchPaths);$(GameManagedDirectory)</AssemblySearchPaths>
-    <AssemblySearchPaths Condition="Exists($(PluginDirectory))">$(AssemblySearchPaths);$(PluginDirectory)</AssemblySearchPaths>
+    <AssemblySearchPaths Condition="Exists($(PluginsDirectory))">$(AssemblySearchPaths);$(PluginsDirectory)</AssemblySearchPaths>
   </PropertyGroup>
 
   <ItemGroup>

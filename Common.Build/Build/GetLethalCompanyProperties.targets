@@ -21,7 +21,7 @@
         <GameExePath>$(GameExePath)</GameExePath>
         <GameManagedDirectory>$(GameManagedDirectory)</GameManagedDirectory>
         <PluginName>$(PluginName)</PluginName>
-        <PluginDirectory>$(PluginDirectory)</PluginDirectory>
+        <PluginsDirectory>$(PluginsDirectory)</PluginsDirectory>
         <PluginOutputSubdirectory>$(PluginOutputSubdirectory)</PluginOutputSubdirectory>
         <PluginOutputDirectory>$(PluginOutputDirectory)</PluginOutputDirectory>
       

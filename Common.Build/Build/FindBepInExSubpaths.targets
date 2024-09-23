@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PluginDirectory Condition="'$(PluginDirectory)' == ''">$([MSBuild]::NormalizeDirectory($(BepInExDirectory), plugins))</PluginDirectory>
-    <PluginOutputDirectory Condition="'$(PluginOutputDirectory)' == ''">$([MSBuild]::NormalizeDirectory($(PluginDirectory), $(PluginOutputSubdirectory)))</PluginOutputDirectory>
+    <PluginsDirectory Condition="'$(PluginsDirectory)' == ''">$([MSBuild]::NormalizeDirectory($(BepInExDirectory), plugins))</PluginsDirectory>
+    <PluginOutputDirectory Condition="'$(PluginOutputDirectory)' == ''">$([MSBuild]::NormalizeDirectory($(PluginsDirectory), $(PluginOutputSubdirectory)))</PluginOutputDirectory>
   </PropertyGroup>
   
 </Project>
